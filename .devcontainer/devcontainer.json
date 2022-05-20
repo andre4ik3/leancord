@@ -4,10 +4,12 @@
     "dockerfile": "Dockerfile"
   },
   "settings": {
+    "workbench.colorTheme": "GitHub Dark Default",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "deno.path": "/usr/local/bin/deno"
   },
   "extensions": [
+    "GitHub.github-vscode-theme",
     "esbenp.prettier-vscode",
     "denoland.vscode-deno",
     "matklad.rust-analyzer"
