@@ -12,7 +12,8 @@
     "GitHub.github-vscode-theme",
     "esbenp.prettier-vscode",
     "denoland.vscode-deno",
-    "matklad.rust-analyzer"
+    "rust-lang.rust-analyzer",
+    "bungcip.better-toml"
   ],
   "remoteUser": "vscode"
 }
