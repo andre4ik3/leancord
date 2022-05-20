@@ -1,0 +1,16 @@
+{
+  "name": "Development Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "deno.path": "/usr/local/bin/deno"
+  },
+  "extensions": [
+    "esbenp.prettier-vscode",
+    "denoland.vscode-deno",
+    "matklad.rust-analyzer"
+  ],
+  "remoteUser": "vscode"
+}
