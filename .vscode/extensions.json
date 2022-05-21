@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "GitHub.github-vscode-theme",
     "esbenp.prettier-vscode",
     "denoland.vscode-deno",
     "rust-lang.rust-analyzer",
