@@ -16,8 +16,8 @@ RUN ["/bin/chmod", "-R", "775", "/usr/local"]
 RUN ["/usr/bin/apt", "install", "-y", "nodejs"]
 RUN ["/usr/bin/apt", "install", "-y", "npm"]
 RUN ["/usr/bin/apt", "install", "-y", "build-essential"]
-RUN ["/usr/bin/sudo", "-iu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"]
-RUN ["/usr/bin/sudo", "-iu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- --no-modify-path -y -c rls"]
+RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"]
+RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- --no-modify-path -y -c rls"]
 
 # Install & enable corepack (for Yarn)
 RUN ["/usr/bin/npm", "install", "--global", "corepack"]
