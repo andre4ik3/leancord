@@ -10,9 +10,11 @@
     "**/.gitpod.yml": true,
     "**/.editorconfig": true,
     "**/.prettierignore": true,
-    // Root node_modules
+    // Root package for Nx
     "node_modules": true,
+    "yarn.lock": true,
     // Rust & wasm-pack
+    "**/Cargo.lock": true,
     "**/pkg": true,
     "**/target": true
   }

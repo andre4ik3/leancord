@@ -6,7 +6,7 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "wasm-pack build -t web"
+        "command": "cd packages/etfpack && wasm-pack build -t web"
       }
     },
     "test": {

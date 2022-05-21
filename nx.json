@@ -5,16 +5,10 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test"
-        ],
-        "accessToken": "MjE0OWI2ZjQtNjczNi00MGIzLWEyYTItYzU4MzMwNWIyNDE0fHJlYWQtd3JpdGU="
+        "cacheableOperations": ["build", "lint", "test"],
+        "accessToken": "MWYzNjdhMmEtMGRjNy00NWY1LWI4MWQtZGNjOGQ5MjVmODcyfHJlYWQtd3JpdGU="
       }
     }
   },
-  "plugins": [
-    "@nxrs/cargo"
-  ]
+  "plugins": ["@nxrs/cargo"]
 }

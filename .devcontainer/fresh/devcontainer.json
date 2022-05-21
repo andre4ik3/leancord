@@ -1,6 +1,8 @@
 {
-  "name": "Prebuilt",
-  "image": "ghcr.io/andre4ik3/devcontainer-discord",
+  "name": "Fresh",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
   "settings": {
     "workbench.colorTheme": "GitHub Dark Default",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
