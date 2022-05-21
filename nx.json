@@ -1,0 +1,20 @@
+{
+  "extends": "nx/presets/core.json",
+  "npmScope": "internal",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test"
+        ],
+        "accessToken": "MjE0OWI2ZjQtNjczNi00MGIzLWEyYTItYzU4MzMwNWIyNDE0fHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "plugins": [
+    "@nxrs/cargo"
+  ]
+}

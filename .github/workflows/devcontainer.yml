@@ -1,0 +1,21 @@
+name: "Build Devcontainer"
+on: { push: { paths: [".devcontainer/Dockerfile"] } }
+
+jobs:
+  build:
+    name: "Build Container"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v2
+
+      - name: "Build Image"
+        run: |
+          cd .devcontainer
+          docker build -t ghcr.io/${{ github.repository_owner }}/devcontainer-discord .
+
+      - name: "Push Image"
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          docker push ghcr.io/${{ github.repository_owner }}/devcontainer-discord
