@@ -16,8 +16,8 @@ RUN ["sh", "-c", "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"]
 RUN ["sh", "-c", "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- -y -c rls"]
 
 # Give vscode user permissions to /usr/local
-# RUN ["/bin/chown", "-R", "root:vscode", "/usr/local"]
-# RUN ["/bin/chmod", "-R", "775", "/usr/local"]
+RUN ["/bin/chown", "root:vscode", "/usr/local"]
+RUN ["/bin/chmod", "775", "/usr/local"]
 
 # Install & enable corepack (for Yarn)
 RUN ["/usr/bin/npm", "install", "--global", "corepack"]
