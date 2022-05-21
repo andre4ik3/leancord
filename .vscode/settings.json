@@ -7,9 +7,9 @@
     // ".devcontainer": true,
     // ".vscode": true,
     // ".github": true,
-    "**/.gitpod.yml": true,
-    "**/.editorconfig": true,
-    "**/.prettierignore": true,
+    ".gitpod.yml": true,
+    ".editorconfig": true,
+    ".prettierignore": true,
     // Root package for Nx
     "node_modules": true,
     "yarn.lock": true,
