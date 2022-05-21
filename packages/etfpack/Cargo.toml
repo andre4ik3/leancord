@@ -1,0 +1,16 @@
+[package]
+name = "etfpack"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "WebAssembly ETF (un)packer"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+flate2 = "1.0.23"
+num-bigint = "0.4"
+wasm-bindgen = "0.2.0"
+js-sys = "0.3.0"

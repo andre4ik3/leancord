@@ -1,5 +1,19 @@
 {
   "deno.enable": true,
   "deno.lint": true,
-  "deno.unstable": false
+  "deno.unstable": false,
+  "files.exclude": {
+    // hide some common, annoying, and irrelevant files to reduce clutter
+    // "**/.devcontainer": true,
+    "**/.gitpod.yml": true,
+    "**/.editorconfig": true,
+    "**/.prettierignore": true,
+
+    // Root node_modules
+    "node_modules": true,
+
+    // Rust & wasm-pack
+    "**/pkg": true,
+    "**/target": true
+  }
 }
