@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/vscode/devcontainers/base:bullseye
 
+ENV DENO_DIR="/usr/local/deno"
 ENV DENO_INSTALL="/usr/local"
 ENV RUSTUP_HOME="/usr/local"
 ENV CARGO_HOME="/usr/local"
@@ -9,8 +10,9 @@ RUN ["/usr/bin/apt", "update", "-y"]
 RUN ["/usr/bin/apt", "upgrade", "-y"]
 
 # Give vscode user permissions to /usr/local
-RUN ["/bin/chown", "-R", "root:vscode", "/usr/local"]
-RUN ["/bin/chmod", "-R", "775", "/usr/local"]
+RUN ["/bin/mkdir", "/usr/local/deno"]
+RUN ["/bin/chown", "-R", "root:vscode", "/usr/local", "/usr/local/deno"]
+RUN ["/bin/chmod", "-R", "775", "/usr/local", "/usr/local/deno"]
 
 # Install base dependencies.
 RUN ["/bin/bash", "-c", "curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -"]
