@@ -13,18 +13,15 @@ RUN ["/bin/chown", "-R", "root:vscode", "/usr/local"]
 RUN ["/bin/chmod", "-R", "775", "/usr/local"]
 
 # Install base dependencies. TODO: figure out why installing npm takes > 5 minutes
-RUN ["/usr/bin/apt", "install", "-y", "nodejs"]
-RUN ["/usr/bin/apt", "install", "-y", "npm"]
-RUN ["/usr/bin/apt", "install", "-y", "build-essential"]
+RUN ["/bin/bash", "-c", "curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -"]
 RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"]
 RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- --no-modify-path -y -t wasm32-unknown-unknown -c rls"]
-
-# Install & enable corepack (for Yarn)
-RUN ["/usr/bin/npm", "install", "--global", "corepack"]
-RUN ["/usr/local/bin/corepack", "enable"]
+RUN ["/usr/bin/apt", "install", "-y", "nodejs"]
 
 # Install some other CLIs
+RUN ["/usr/local/bin/corepack", "enable"]
 RUN ["/usr/bin/npm", "install", "--global", "nx"]
 RUN ["/usr/bin/npm", "install", "--global", "prettier"]
 RUN ["/usr/bin/npm", "install", "--global", "typescript"]
+RUN ["/usr/bin/sudo", "-Eu", "vscode", "deno install -Afq -n deno_bindgen https://deno.land/x/deno_bindgen/cli.ts"]
 RUN ["/usr/bin/sudo", "--preserve-env=RUSTUP_HOME,CARGO_HOME", "-u", "vscode", "/usr/local/bin/cargo", "install", "--locked", "wasm-pack"]

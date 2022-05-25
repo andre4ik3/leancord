@@ -1,5 +1,5 @@
 name: "Build Devcontainer"
-on: { push: { paths: [".devcontainer/Dockerfile"] } }
+on: { push: { paths: [".devcontainer/Dockerfile"] }, workflow_dispatch: {} }
 
 jobs:
   build:
@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: "Checkout Repository"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: "Build Image"
         run: |
