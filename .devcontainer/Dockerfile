@@ -19,8 +19,7 @@ RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://
 RUN ["/usr/bin/apt", "install", "-y", "nodejs"]
 
 # Prepare Yarn
-RUN ["/usr/bin/npm", "install", "--global", "corepack"]
-RUN ["/usr/local/bin/corepack", "enable"]
+RUN ["/usr/bin/corepack", "enable"]
 
 # Install some other CLIs
 RUN ["/usr/bin/npm", "install", "--global", "nx"]
