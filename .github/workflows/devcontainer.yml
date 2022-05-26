@@ -5,12 +5,7 @@ jobs:
   build:
     name: "Build Container (${{ matrix.tag }})"
     runs-on: "ubuntu-latest"
-    strategy:
-      matrix:
-        tag: ["codespace", "vscserver"]
-        args:
-          - "--build-arg IMAGE=mcr.microsoft.com/vscode/devcontainers/base:bullseye"
-          - "--build-arg IMAGE=gitpod/openvscode-server:latest --build-arg USERNAME=openvscode-server"
+    strategy: { matrix: { tag: ["codespace", "vscserver"] } }
 
     steps:
       - name: "Checkout Repository"
