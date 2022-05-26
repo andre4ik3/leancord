@@ -16,6 +16,8 @@ RUN ["/bin/chmod", "-R", "775", "/usr/local", "/usr/local/bin", "/usr/local/deno
 
 # Install base dependencies.
 RUN ["/usr/bin/apt", "install", "-y", "build-essential"]
+RUN ["/usr/bin/apt", "install", "-y", "libssl-dev"]
+RUN ["/usr/bin/apt", "install", "-y", "pkg-config"]
 RUN ["/bin/bash", "-c", "curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -"]
 RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"]
 RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- --no-modify-path -y -t wasm32-unknown-unknown -c rls"]
