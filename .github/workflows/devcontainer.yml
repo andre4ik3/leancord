@@ -3,25 +3,41 @@ on: { push: { paths: [".devcontainer/Dockerfile"] }, workflow_dispatch: {} }
 
 jobs:
   build:
-    name: "Build Container"
+    name: "Build Container (${{ matrix.tag }})"
     runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        tag: ["codespace", "vscserver"]
+        args:
+          - "--build-arg IMAGE=mcr.microsoft.com/vscode/devcontainers/base:bullseye"
+          - "--build-arg IMAGE=gitpod/openvscode-server:latest --build-arg USERNAME=openvscode-server"
 
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v3
 
-      - name: "Build Images"
+      - name: "Build Codespace Image"
+        if: matrix.tag == 'codespace'
         run: |
           cd .devcontainer
-          docker build -t ghcr.io/${{ github.repository_owner }}/devcontainer-discord:codespace --build-arg IMAGE=mcr.microsoft.com/vscode/devcontainers/base:bullseye .
-          docker build -t ghcr.io/${{ github.repository_owner }}/devcontainer-discord:vscserver --build-arg IMAGE=gitpod/openvscode-server:latest --build-arg USERNAME=openvscode-server .
+          docker build \
+            -t ghcr.io/${{ github.repository_owner }}/devcontainer-discord:${{ matrix.tag }} \
+            --build-arg IMAGE=mcr.microsoft.com/vscode/devcontainers/base:bullseye .
+
+      - name: "Build VS Code Server Image"
+        if: matrix.tag == 'vscserver'
+        run: |
+          cd .devcontainer
+          docker build \
+            -t ghcr.io/${{ github.repository_owner }}/devcontainer-discord:${{ matrix.tag }} \
+            --build-arg IMAGE=gitpod/openvscode-server:latest \
+            --build-arg USERNAME=openvscode-server .
 
       - name: "Cache Layers"
         uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
 
-      - name: "Push Images"
+      - name: "Push Image"
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-          docker push ghcr.io/${{ github.repository_owner }}/devcontainer-discord:codespace
-          docker push ghcr.io/${{ github.repository_owner }}/devcontainer-discord:vscserver
+          docker push ghcr.io/${{ github.repository_owner }}/devcontainer-discord:${{ matrix.tag }}
