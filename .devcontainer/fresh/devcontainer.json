@@ -1,7 +1,10 @@
 {
   "name": "Fresh",
   "build": {
-    "dockerfile": "../Dockerfile"
+    "dockerfile": "../Dockerfile",
+    "args": {
+      "IMAGE": "mcr.microsoft.com/vscode/devcontainers/base:bullseye"
+    }
   },
   "settings": {
     "workbench.colorTheme": "GitHub Dark Default",

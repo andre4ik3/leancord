@@ -1,6 +1,6 @@
 {
   "name": "Prebuilt",
-  "image": "ghcr.io/andre4ik3/devcontainer-discord",
+  "image": "ghcr.io/andre4ik3/devcontainer-discord:codespace",
   "settings": {
     "workbench.colorTheme": "GitHub Dark Default",
     "editor.defaultFormatter": "esbenp.prettier-vscode",

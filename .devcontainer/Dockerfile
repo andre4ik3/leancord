@@ -1,9 +1,13 @@
-FROM mcr.microsoft.com/vscode/devcontainers/base:bullseye
+ARG IMAGE
+FROM ${IMAGE}
 
+ARG USER="vscode"
 ENV DENO_DIR="/usr/local/deno"
 ENV DENO_INSTALL="/usr/local"
 ENV RUSTUP_HOME="/usr/local"
 ENV CARGO_HOME="/usr/local"
+
+USER root
 
 # Make sure repositories are up to date
 RUN ["/usr/bin/apt", "update", "-y"]
@@ -19,17 +23,17 @@ RUN ["/usr/bin/apt", "install", "-y", "build-essential"]
 RUN ["/usr/bin/apt", "install", "-y", "libssl-dev"]
 RUN ["/usr/bin/apt", "install", "-y", "pkg-config"]
 RUN ["/bin/bash", "-c", "curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -"]
-RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"]
-RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- --no-modify-path -y -t wasm32-unknown-unknown -c rls"]
+
+# Setup Node.JS
 RUN ["/usr/bin/apt", "install", "-y", "nodejs"]
-
-# Prepare Yarn
 RUN ["/usr/bin/corepack", "enable"]
-
-# Install some other CLIs
 RUN ["/usr/bin/npm", "install", "--global", "nx"]
 RUN ["/usr/bin/npm", "install", "--global", "prettier"]
 RUN ["/usr/bin/npm", "install", "--global", "typescript"]
-RUN ["/usr/bin/sudo", "-Eu", "vscode", "sh", "-c", "deno install -Afq -n deno_bindgen --root ${DENO_INSTALL} https://deno.land/x/deno_bindgen/cli.ts"]
-RUN ["/usr/bin/sudo", "--preserve-env=RUSTUP_HOME,CARGO_HOME", "-u", "vscode", "/usr/local/bin/cargo", "install", "--locked", "wasm-bindgen-cli"]
-RUN ["/usr/bin/sudo", "--preserve-env=RUSTUP_HOME,CARGO_HOME", "-u", "vscode", "/usr/local/bin/cargo", "install", "--locked", "wasm-pack"]
+
+# Install some other things under the vscode user.
+USER ${USER}
+RUN "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- --no-modify-path -y -t wasm32-unknown-unknown -c rls"
+RUN ["/usr/local/bin/cargo", "install", "--locked", "wasm-bindgen-cli"]
+RUN ["/usr/local/bin/cargo", "install", "--locked", "wasm-pack"]
+RUN "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"
