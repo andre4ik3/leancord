@@ -33,7 +33,7 @@ RUN ["/usr/bin/npm", "install", "--global", "typescript"]
 
 # Install some other things under the vscode user.
 USER ${USER}
-RUN "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- --no-modify-path -y -t wasm32-unknown-unknown -c rls"
+RUN ["sh", "-c", "/usr/bin/curl -fsSL https://sh.rustup.rs | sh -s -- --no-modify-path -y -t wasm32-unknown-unknown -c rls"]
 RUN ["/usr/local/bin/cargo", "install", "--locked", "wasm-bindgen-cli"]
 RUN ["/usr/local/bin/cargo", "install", "--locked", "wasm-pack"]
-RUN "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"
+RUN ["sh", "-c", "/usr/bin/curl -fsSL https://deno.land/install.sh | sh"]
