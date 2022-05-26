@@ -14,7 +14,7 @@ jobs:
         run: |
           cd .devcontainer
           docker build -t ghcr.io/${{ github.repository_owner }}/devcontainer-discord:codespace --build-arg IMAGE=mcr.microsoft.com/vscode/devcontainers/base:bullseye .
-          docker build -t ghcr.io/${{ github.repository_owner }}/devcontainer-discord:vscserver --build-arg IMAGE=gitpod/openvscode-server:latest --build-arg USER=openvscode-server .
+          docker build -t ghcr.io/${{ github.repository_owner }}/devcontainer-discord:vscserver --build-arg IMAGE=gitpod/openvscode-server:latest --build-arg USERNAME=openvscode-server .
 
       - name: "Cache Layers"
         uses: satackey/action-docker-layer-caching@v0.0.11
