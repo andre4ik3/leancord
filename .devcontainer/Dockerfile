@@ -15,7 +15,7 @@ RUN ["/usr/bin/apt", "upgrade", "-y"]
 
 # Give vscode user permissions to /usr/local
 RUN ["/bin/mkdir", "/usr/local/deno"]
-RUN ["/bin/chown", "-R", "root:${USERNAME}", "/usr/local", "/usr/local/bin", "/usr/local/deno"]
+RUN ["/bin/chown", "-R", "root:$USERNAME", "/usr/local", "/usr/local/bin", "/usr/local/deno"]
 RUN ["/bin/chmod", "-R", "775", "/usr/local", "/usr/local/bin", "/usr/local/deno"]
 
 # Install base dependencies.
