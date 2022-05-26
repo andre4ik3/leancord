@@ -22,6 +22,7 @@ RUN chmod -R 775 /usr/local /usr/local/bin /usr/local/deno
 RUN ["/usr/bin/apt", "install", "-y", "build-essential"]
 RUN ["/usr/bin/apt", "install", "-y", "libssl-dev"]
 RUN ["/usr/bin/apt", "install", "-y", "pkg-config"]
+RUN ["/usr/bin/apt", "install", "-y", "unzip"]
 RUN ["/bin/bash", "-c", "curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -"]
 
 # Setup Node.JS
